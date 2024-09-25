@@ -7,3 +7,9 @@ example of an olympic country:
     participations: []
 }
 */
+
+interface OlympicCountry {
+    id: number;
+    country: string;
+    participations: any[];
+}
