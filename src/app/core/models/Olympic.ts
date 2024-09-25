@@ -8,8 +8,10 @@ example of an olympic country:
 }
 */
 
-interface OlympicCountry {
-    id: number;
-    country: string;
-    participations: any[];
+import { Participation } from './Participation';
+
+export interface Olympic {
+  id: number;
+  country: string;
+  participations: Participation[];
 }
