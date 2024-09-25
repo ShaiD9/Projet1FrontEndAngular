@@ -4,20 +4,12 @@
 <div *ngIf="olympics$ | async as olympics">
     <p>Nombre de pays: {{ olympics.length }}</p>
 </div>
-<div *ngIf="olympics$ | async as olympics">
+<!-- <div *ngIf="olympics$ | async as olympics">
     <p>Nombre de participations (JO): {{ totalParticipations }}</p>
-    <div *ngFor="let country of olympics">
-        <h3>{{ country.country }}</h3>
-        <ul>
-            <li *ngFor="let participation of country.participations">
-                Year: {{ participation.year }}, City: {{ participation.city }}, Medals: {{ participation.medalsCount }}, Athletes: {{ participation.athleteCount }}
-            </li>
-        </ul>
-    </div>
-</div>
+</div> -->
 
 <ngx-charts-pie-chart
-  [view]="[700, 400]"
+  [view]="[800, 600]"
   [scheme]="colorScheme"
   [results]="pieChartData"
   [legend]="false"
