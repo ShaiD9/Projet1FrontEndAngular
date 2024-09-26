@@ -1,0 +1,41 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.card {
+    border: 3px solid #088c86;
+    padding: 1em;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 1em;
+}
+
+.information {
+    display: flex;
+    flex-direction: row;
+}
+
+.title {
+    // border: 2px solid #10b3ac;
+    background-color: #088c86;
+    width: 10em;
+    align-items: center;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 1em;
+}
+
+::ng-deep .ngx-charts .pie-label {
+    font-size: 20px;
+}
+  
+  

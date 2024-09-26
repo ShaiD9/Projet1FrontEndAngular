@@ -1,19 +1,25 @@
-<h2>Olympic games app</h2>
-<hr />
+<div class="home">
+  <div class="title">Medals per Country</div>
 
-<div *ngIf="olympics$ | async as olympics">
-    <p>Nombre de pays: {{ olympics.length }}</p>
+  <div class="information">
+    <div *ngIf="olympics$ | async as olympics" class="card">
+        Number of JOs
+        <div><b>{{ totalParticipations }}</b></div>
+    </div>
+    <div *ngIf="olympics$ | async as olympics" class="card">
+        Number of countries
+        <div><b>{{ olympics.length }}</b></div>
+    </div>
+  </div>
+
+
+  <ngx-charts-pie-chart
+    [view]="[800, 600]"
+    [scheme]="colorScheme"
+    [results]="pieChartData"
+    [legend]="false"
+    [labels]="true"
+    [doughnut]="false"
+    [gradient]="false">
+  </ngx-charts-pie-chart>
 </div>
-<!-- <div *ngIf="olympics$ | async as olympics">
-    <p>Nombre de participations (JO): {{ totalParticipations }}</p>
-</div> -->
-
-<ngx-charts-pie-chart
-  [view]="[800, 600]"
-  [scheme]="colorScheme"
-  [results]="pieChartData"
-  [legend]="false"
-  [labels]="true"
-  [doughnut]="false"
-  [gradient]="false">
-</ngx-charts-pie-chart>

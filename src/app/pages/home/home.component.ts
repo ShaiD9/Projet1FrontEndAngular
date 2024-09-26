@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.olympics$ = this.olympicService.getOlympics().pipe(
       map(data => {
         //console.log('Data from service:', data); //Verif données
+        this.totalParticipations = this.calculateTotalParticipations(data);
         return this.transformDataForPieChart(data);
       })
     );
@@ -49,6 +50,18 @@ export class HomeComponent implements OnInit {
   }
 
   calculateTotalParticipations(data: Olympic[]): number {
-    return data.reduce((acc, country) => acc + country.participations.length, 0);
+    if (!data) {
+      //console.error('No data available');
+      return 0;
+    }
+    const uniqueParticipations = new Set<string>();
+    data.forEach(country => {
+      if (country.participations) {
+        country.participations.forEach(participation => {
+          uniqueParticipations.add(participation.year.toString());
+        });
+      }
+    });
+    return uniqueParticipations.size;
   }
 }
