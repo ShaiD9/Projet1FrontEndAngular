@@ -1,0 +1,36 @@
+<div class="home">
+    <div class="title">{{ countryName }}</div>
+  
+    <div class="information">
+      <div class="card">
+        Number of entries
+        <div><b>{{ getParticipationCount() }}</b></div>
+      </div>
+      <div class="card">
+        Total number of medals
+        <div><b>{{ getTotalMedals() }}</b></div>
+      </div>
+      <div class="card">
+        Total number of athletes
+        <div><b>{{ getTotalAthletes() }}</b></div>
+      </div>
+    </div>
+
+    <div *ngIf="countryData">
+        <ngx-charts-line-chart
+          [view]="[800, 600]"
+          [scheme]="colorScheme"
+          [results]="transformDataForLineChart(countryData)"
+          [legend]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Year'"
+          [yAxisLabel]="'Medals'"
+          [animations]="false">
+        </ngx-charts-line-chart>
+      </div>
+
+    <button class="retour" (click)="goBack()">Back</button>
+</div>

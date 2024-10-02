@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   };
   public totalParticipations: number = 0;
 
-  constructor(private olympicService: OlympicService) {}
+  constructor(private olympicService: OlympicService, private router: Router) {}
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics().pipe(
@@ -63,5 +64,9 @@ export class HomeComponent implements OnInit {
       }
     });
     return uniqueParticipations.size;
+  }
+
+  onSelect(event: any): void {
+    this.router.navigate(['/country', event.name]);
   }
 }
