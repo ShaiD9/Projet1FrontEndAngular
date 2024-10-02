@@ -12,25 +12,28 @@ import { Participation } from 'src/app/core/models/Participation';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
+
 export class HomeComponent implements OnInit {
-  public olympics$!: Observable<Olympic[]>;
-  public pieChartData: any[] = [];
-  public colorScheme: Color = {
+  public olympics$!: Observable<Olympic[]>; // Observable pour contenir la liste des données olympiques
+  public pieChartData: any[] = []; // Tableau pour contenir les données du graphique circulaire
+  public colorScheme: Color = { // Configuration des couleurs pour le graphique circulaire
     domain: ['#a95963','#adcded', '#a8385d', '#7aa3e5', '#a27ea8','#aae3f5'],
     name: 'default',
     selectable: true,
     group: ScaleType.Ordinal
   };
-  public totalParticipations: number = 0;
+  public totalParticipations: number = 0; // Nombre total de participations à travers tous les pays
 
+  // Injection des services OlympicService et Router dans le composant
   constructor(private olympicService: OlympicService, private router: Router) {}
 
+  // Méthode qui se déclenche a l'initialisation du composant
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics().pipe(
       map(data => {
         //console.log('Data from service:', data); //Verif données
-        this.totalParticipations = this.calculateTotalParticipations(data);
-        return this.transformDataForPieChart(data);
+        this.totalParticipations = this.calculateTotalParticipations(data); //on appelle la méthode pour calculer le nombre total de participations
+        return this.transformDataForPieChart(data); //on appelle la méthode pour transformer les données
       })
     );
     this.olympics$.subscribe(data => {
@@ -39,6 +42,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Méthode pour transformer les données olympiques en un format adapté pour le graphique circulaire
   transformDataForPieChart(data: Olympic[]): any[] {
     if (!data) {
       //console.error('No data available');
@@ -50,6 +54,7 @@ export class HomeComponent implements OnInit {
     }));
   }
 
+  // Méthode pour calculer le nombre total de participations à travers tous les pays
   calculateTotalParticipations(data: Olympic[]): number {
     if (!data) {
       //console.error('No data available');
@@ -66,6 +71,7 @@ export class HomeComponent implements OnInit {
     return uniqueParticipations.size;
   }
 
+  // Méthode pour gérer la sélection d'un pays depuis le graphique
   onSelect(event: any): void {
     this.router.navigate(['/country', event.name]);
   }
