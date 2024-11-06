@@ -2,6 +2,15 @@
 
 Bienvenue dans le projet **Developpez le front-end en utilisant Angular**.
 
+## Versions utilisées
+
+Le projet utilise les versions suivantes :
+
+- **Angular**: 18.0.3
+- **Angular CLI**: 18.0.3
+- **Node.js**: 20.11.1
+- **npm**: 10.2.4
+
 ## Prérequis
 
 Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur votre machine :
